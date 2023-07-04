@@ -5,5 +5,5 @@ using UnityEngine;
 public class SO_GameObjects : ScriptableObject
 {
     [SerializeField] List<GameObject> _gameObjects;
-    public List<GameObject> gameObjects { get { return _gameObjects; } }
+    public List<GameObject> gameObjects { get { return _gameObjects; } set { _gameObjects = value; } }
 }

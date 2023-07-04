@@ -2,10 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using CommonMethodsLibrary;
 using System;
+using UnityEditor;
 
 public class MenuBehaviour : MonoBehaviour
 {
+    [SerializeField] SO_GameObjects _gameObjects;
+
     public static Func<Color> OnChangeColor;
+
+    public static Action OnCallObj;
 
     [SerializeField] List<Color> _colorList;
 
@@ -25,8 +30,17 @@ public class MenuBehaviour : MonoBehaviour
         _colorList.Add(c);
     }
 
+    public void InstantiateObjects()
+    {
+        GameObject[] t = GameObject.FindGameObjectsWithTag("SPAWN");
+        GameObject g = DanUtils.MakeRandomItemList(_gameObjects.gameObjects);
+        Instantiate(g, DanUtils.MakeRandomItemArray(t).transform.position, Quaternion.identity);
+    }
+
+
     private void OnEnable()
     {
         OnChangeColor = ChangeColor;
+        OnCallObj = InstantiateObjects;
     }
 }

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using CommonMethodsLibrary;
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(MenuBehaviour))]
 public class MenuEditor : Editor
 {
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -16,5 +16,13 @@ public class MenuEditor : Editor
         {
             behaviour.AddRandomColorToList();
         }
+    }
+
+    [MenuItem("Módulo 23/GameObjectOnScene")]
+    public static void CreateGameObject()
+    {
+        if(MenuBehaviour.OnCallObj != null)
+        MenuBehaviour.OnCallObj?.Invoke();
+        else MonoBehaviour.print("O botão irá criar o item desde que a cena esteja em 'PLAY MODE'");
     }
 }
